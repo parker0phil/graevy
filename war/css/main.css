@@ -1,0 +1,32 @@
+body {
+	font-family: Arial;
+	margin: 30px;
+}
+
+.error{
+    color:red;
+}
+
+h1, h2, h3 {
+	color: #5b2c00;
+}
+
+h1 {
+	border-bottom: #5b2c00 3px dotted;
+}
+
+.header {
+float:left;
+}
+
+.nav {
+float:left;
+}
+
+.ui-tabs .ui-tabs-hide {
+    position: absolute;
+    left: -10000px;
+}
+textarea{
+    width:100%;
+}
