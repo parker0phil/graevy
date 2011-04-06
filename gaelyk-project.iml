@@ -16,12 +16,10 @@
       <sourceFolder url="file://$MODULE_DIR$/war/WEB-INF/groovy" isTestSource="false" />
     </content>
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" exported="" name="com.google.appengine.eclipse.core.GAE_CONTAINER" level="application" />
     <orderEntry type="inheritedJdk" />
-    <orderEntry type="library" exported="" name="GROOVY_SUPPORT" level="application" />
-    <orderEntry type="library" name="groovy-1.7.10" level="application" />
-    <orderEntry type="library" name="groovy-1.7.10" level="application" />
     <orderEntry type="library" name="GAE" level="project" />
+    <orderEntry type="library" name="Gaelyk" level="project" />
+    <orderEntry type="library" name="groovy-1.8.0-rc-3" level="application" />
   </component>
 </module>
 

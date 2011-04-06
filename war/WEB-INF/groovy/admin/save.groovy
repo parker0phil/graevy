@@ -1,32 +1,62 @@
 package admin
 
-
 import com.google.appengine.api.datastore.*
 
-log.info "Trying to save '$params.name' (create=${params['create']})"
 
-def query = new Query('Mashup')
-query.addFilter("name", Query.FilterOperator.EQUAL, params.name)
-PreparedQuery preparedQuery = datastore.prepare(query)
-alreadyExists =  preparedQuery.asSingleEntity()
-
-if (alreadyExists?.name && !params['create']){
-    log.info "Cannot save '$params.name' (already exists)"
-    request['errors'] = ['name':"Already exists."]
+if (!user){
+    redirect users.createLoginURL("/admin/list")
+}
+log.info "$user.graevyName"
+namespace.of(user.namespace){
     request['mashup'] = params
-    forward "/edit.gtpl"
-}else if ("true".equals(params['create'])){
-    log.info "Creating new mashup '$params.name'"
-    def newMashup = new Entity('Mashup')
-    newMashup << params.subMap(['name', 'scraper', 'display'])
-    newMashup.save()
-    redirect "/mash/$params.name"
-}else{
-    alreadyExists.scraper = params.scraper
-    alreadyExists.display = params.display
-    log.info "Updating existing mashup '$alreadyExists.name'"
-    alreadyExists.save()
-    redirect "/mash/$alreadyExists.name"
+    alreadyExists = false;
+    isCreate = "null".equals(params.id)
+
+    if ("".equals(params.name.trim())){
+        request['errors'] = ['name':"You must specify a name for your app."]
+        forward "/edit.gtpl"
+    }
+
+    def query = new Query(entityName)
+    query.addFilter("name", Query.FilterOperator.EQUAL, params.name)
+    PreparedQuery preparedQuery = datastore.prepare(query)
+    Entity entityByName =  preparedQuery.asSingleEntity()
+    Entity entityById
+
+    if(isCreate){
+        if (entityByName){
+            alreadyExists = true;
+        }
+    }else{
+        def key = KeyFactory.createKey(entityName, Long.parseLong(params.id))
+        entityById = datastore.get(key)
+        if (!entityById==entityByName){
+            alreadyExists = true;
+        }
+    }
+
+    if (alreadyExists){request['errors'] = ['name':"An app with the name '$params.name' already exists."]   }
+
+    if (request['errors']){
+        request['mashup'] = params
+        forward "/edit.gtpl"
+    }else if (isCreate && !alreadyExists){
+        log.info "Creating new mashup '$params.name'"
+        def newEntity = new Entity('Mashup')
+        newEntity.name = params.name;
+        newEntity.scraper = params.scraper as Text
+        newEntity.display = params.display as Text
+        newEntity.save()
+        redirect "/$user.graevyName/$newEntity.name"
+    }else if (!alreadyExists){
+
+        entityById.scraper = params.scraper as Text
+        entityById.display = params.display as Text
+        log.info "Updating existing mashup '$entityById.name' as '$params.name'"
+        entityById.name = params.name
+        entityById.save()
+        redirect "/$user.graevyName/$entityById.name"
+    }
 }
 
 

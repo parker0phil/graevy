@@ -33,30 +33,31 @@
     </script>
     <form action="/admin/edit" method="post">
         <div id="tabs">
+            <% if (errors?.name) {%><div class="error">$errors.name</div>  <%}%>
              <ul>
                 <li>
-                    <label>${baseurl}/mash/</label>
+                    <label>${baseurl}/${user.graevyName}/</label><% if (errors?.scraper) {%><div class="error">$errors.scraper</div>  <%}%>
                     <input type="text" name="name" value="${mashup.name}">
 
                 </li>
-                <li><a href="#tabs-scraper"><span>Scraper</span></a></li>
-                <li><a href="#tabs-display"><span>Display</span></a></li>
+                <li><a href="#tabs-scraper"><span>Script source</span></a></li>
+                <li><a href="#tabs-display"><span>Page source</span></a></li>
                 <li>
                     <input type="submit" value="Save & View">
-                    <input type="hidden" name="create" value="${request.create}">
+                    <input type="hidden" name="id" value="${mashup.key?.id}">
                 </li>
             </ul>
             <div id="tabs-scraper">
-                <% if (errors?.scraper) {%><span class="error">$errors.scraper</span><br/>  <%}%>
-                <textarea id="scraperTextArea" rows="20"  cols ="10" name="scraper" >$mashup.scraper</textarea>  <br/>
+
+                <textarea id="scraperTextArea" rows="20"  cols ="10" name="scraper" >$mashup.scraper.value</textarea>  <br/>
             </div>
             <div id="tabs-display">
-                <% if (errors?.display) {%><span class="error">$errors.display</span><br/>  <%}%>
-                <textarea id="displayTextArea" rows="20" cols ="10"  name="display" >$mashup.display</textarea>
+                <% if (errors?.display) {%><div class="error">$errors.display</div>  <%}%>
+                <textarea id="displayTextArea" rows="20" cols ="10"  name="display" >$mashup.display.value</textarea>
             </div>
         </div>
     </form>
 
 
-<% include '/WEB-INF/includes/footer.gtpl' %>
+<% include '/WEB-INF/includes/admin-footer.gtpl' %>
 

@@ -2,5 +2,8 @@
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-	<title>${appName}</title>
 	<meta http-equiv="content-type"content="text/html;charset=utf-8" />
+    <link rel="shortcut icon" href="/images/favicon.png" type="image/png">
+    <link rel="icon" href="/images/favicon.png" type="image/png">
+    <link rel="stylesheet" href="/blueprint/screen.css" type="text/css" media="screen, projection" />
+    <link rel="stylesheet" type="text/css" href="/css/main.css"/>

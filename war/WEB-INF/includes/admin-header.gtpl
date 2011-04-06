@@ -8,17 +8,15 @@
         var jq = jQuery.noConflict();
         //]]>
         </script>
-        
-        <link rel="shortcut icon" href="/images/favicon.png" type="image/png">
-        <link rel="icon" href="/images/favicon.png" type="image/png">
-        
-        <link rel="stylesheet" type="text/css" href="/css/main.css"/>
+        <title>${appName} - admin</title>
     </head>
     <body>
-        <div>
-            <a href="/"><img src="/images/graevy-small.png"></a>
-        </div>
-        <div>
-               <a href="/admin/list">list all</a> | <a href="/admin/edit">create new</a>
-        </div>
-        <div>
+        <div class="container">  <%//showgrid %>
+            <% include '/WEB-INF/includes/topbar.gtpl' %>
+            <div class="span-24 nav">
+                   <hr/><a href="/admin/list">list all</a> | <a href="/admin/edit">create new</a> <hr/>
+            </div>
+            <div class="span-24 content">
+            <% request['messages'].each{ message -> %>
+                <div class="$message.type">$message.message</div>
+            <% }%>

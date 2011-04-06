@@ -27,6 +27,9 @@
     <option name="SKIP_IMPORT_STATEMENTS" value="false" />
   </component>
   <component name="Encoding" useUTFGuessing="true" native2AsciiForPropertiesFiles="false" />
+  <component name="EntryPointsManager">
+    <entry_points version="2.0" />
+  </component>
   <component name="JavadocGenerationManager">
     <option name="OUTPUT_DIRECTORY" />
     <option name="OPTION_SCOPE" value="protected" />
@@ -183,6 +186,13 @@
     <library name="GAE">
       <CLASSES>
         <root url="jar://$USER_HOME$/dev/gae/lib/impl/appengine-api.jar!/" />
+      </CLASSES>
+      <JAVADOC />
+      <SOURCES />
+    </library>
+    <library name="Gaelyk">
+      <CLASSES>
+        <root url="jar://$PROJECT_DIR$/war/WEB-INF/lib/gaelyk-0.6.1.jar!/" />
       </CLASSES>
       <JAVADOC />
       <SOURCES />

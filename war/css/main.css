@@ -1,32 +1,31 @@
-body {
-	font-family: Arial;
-	margin: 30px;
+h1, h2, h3 {
+	color: #5b2c00;
+}
+
+/*.ui-tabs .ui-tabs-hide {
+    position: absolute;
+    left: -10000px;
+}*/
+
+textarea{
+    width:100%;
 }
 
 .error{
     color:red;
 }
 
-h1, h2, h3 {
-	color: #5b2c00;
+.login{
+text-align:right;
 }
 
-h1 {
-	border-bottom: #5b2c00 3px dotted;
+.withgravy{
+    font-style:italic;
+    font-weight:bold;
+    color: #5b2c00;
 }
 
-.header {
-float:left;
+.fig{
+  border:1px solid grey
 }
 
-.nav {
-float:left;
-}
-
-.ui-tabs .ui-tabs-hide {
-    position: absolute;
-    left: -10000px;
-}
-textarea{
-    width:100%;
-}

@@ -8,7 +8,8 @@ class GraevyTemplateServlet extends GaelykTemplateServlet
     @Override
     protected void setVariables(ServletBinding binding) {
         super.setVariables(binding)
-        binding.setVariable("appName", "withGravy")
-        binding.setVariable("baseurl", "http://withgravy.appspot.com")
+        GraevyBindingEnhancer.bind(binding)
+
     }
 }
+// binding.setVariable("messageType", [error:"error", notice : "notice", info:"info", success:"success"])
